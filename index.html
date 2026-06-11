@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Glowcar | Limpieza Profesional a Domicilio en Bahía Blanca</title>
+    <style>
+        /* Estilos Generales con Paleta Premium: Negro, Gris Oscuro y Naranja Vibrante */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+        body {
+            background-color: #121212;
+            color: #ffffff;
+            line-height: 1.6;
+        }
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        /* Encabezado Fijo */
+        header {
+            background-color: #1a1a1a;
+            padding: 20px 0;
+            border-bottom: 3px solid #ff6600;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+        }
+        .header-flex {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-size: 32px;
+            font-weight: 900;
+            color: #ff6600;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            font-style: italic;
+        }
+        
+        /* Sección Principal (Hero) */
+        .hero {
+            background: linear-gradient(rgba(18, 18, 18, 0.85), rgba(18, 18, 18, 0.95)), url('https://images.unsplash.com/photo-1607860108855-64acf2078ed9?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+            padding: 90px 0;
+            text-align: center;
+            border-bottom: 1px solid #2a2a2a;
+        }
+        .hero h1 {
+            font-size: 55px;
+            font-weight: 900;
+            margin-bottom: 15px;
+            color: #ffffff;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+        }
+        .hero h1 span {
+            color: #ff6600;
+        }
+        .hero p {
+            font-size: 22px;
+            margin-bottom: 25px;
+            color: #dddddd;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .hero .ubicacion {
+            font-size: 20px;
+            color: #ff6600;
+            margin-bottom: 30px;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+        
+        /* Cartel Destacado de Domicilio */
+        .badge-domicilio {
+            display: inline-block;
+            background: linear-gradient(135deg, #ff6600, #ff4500);
+            color: white;
+            padding: 14px 35px;
+            font-weight: bold;
+            font-size: 24px;
+            border-radius: 50px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 6px 25px rgba(255, 102, 0, 0.4);
+            border: 2px solid rgba(255,255,255,0.1);
+        }
+
+        /* Sección de Servicios */
+        .services-section {
+            padding: 80px 0;
+            background-color: #121212;
+        }
+        .services-section h2 {
+            text-align: center;
+            font-size: 38px;
+            font-weight: 800;
+            margin-bottom: 50px;
+            color: #ffffff;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            position: relative;
+        }
+        .services-section h2::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background-color: #ff6600;
+            margin: 15px auto 0 auto;
+            border-radius: 2px;
+        }
+        
+        /* Grilla de Categorías */
+        .grid-categorias {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 40px;
+        }
+        @media (min-width: 768px) {
+            .grid-categorias {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        .categoria-card {
+            background-color: #1a1a1a;
+            padding: 40px;
+            border-radius: 15px;
+            border-left: 5px solid #ff6600;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            transition: transform 0.3s ease;
+        }
+        .categoria-card:hover {
+            transform: translateY(-5px);
+        }
+        .categoria-card h3 {
+            font-size: 26px;
+            font-weight: 700;
+            margin-bottom: 25px;
+            color: #ff6600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-bottom: 2px solid #2a2a2a;
+            padding-bottom: 12px;
+        }
+        .lista-servicios {
+            list-style: none;
+        }
+        .lista-servicios li {
+            margin-bottom: 18px;
+            position: relative;
+            padding-left: 30px;
+            font-size: 16px;
+            color: #e0e0e0;
+        }
+        .lista-servicios li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #ff6600;
+            font-weight: 900;
+            font-size: 18px;
+        }
+        .lista-servicios strong {
+            color: #ffffff;
+            font-weight: 600;
+        }
+
+        /* Sección de Contacto Directo */
+        .contacto-section {
+            background-color: #1a1a1a;
+            padding: 80px 0;
+            text-align: center;
+            border-top: 1px solid #2a2a2a;
+        }
+        .contacto-section h2 {
+            font-size: 36px;
+            font-weight: 800;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            color: #ffffff;
+        }
+        .contacto-section p {
+            margin-bottom: 45px;
+            color: #aaaaaa;
+            font-size: 18px;
+        }
+        .btn-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        .btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 18px 30px;
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 8px;
+            font-size: 18px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+        }
+        .btn:hover {
+            transform: scale(1.03);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.6);
+        }
+        
+        .btn-whatsapp { background-color: #25D366; }
+        .btn-instagram { background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); }
+        .btn-facebook { background-color: #1877F2; }
+
+        /* Pie de Página */
+        footer {
+            background-color: #0c0c0c;
+            text-align: center;
+            padding: 30px 0;
+            font-size: 15px;
+            color: #777777;
+            border-top: 1px solid #1a1a1a;
+        }
+        footer p strong { color: #ff6600; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container header-flex">
+            <div class="logo">GLOWCAR</div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>BIENVENIDOS A <span>GLOWCAR</span></h1>
+            <p>Limpieza integral y renovación profesional de tapizados, alfombras y superficies plásticas con acabado de nivel superior.</p>
+            <div class="badge-domicilio">🚚 ¡VAMOS A DOMICILIO!</div>
+            <div class="ubicacion">📍 BAHÍA BLANCA</div>
+            <p style="font-size: 18px; color: #ff6600; font-weight: bold; margin-top: 10px;">¡Pedí tu Presupuesto Ahora!</p>
+        </div>
+    </section>
+
+    <section class="services-section">
+        <div class="container">
+            <h2>Nuestros Servicios</h2>
+            
+            <div class="grid-categorias">
+                <div class="categoria-card">
+                    <h3>🔹 Estética Vehicular</h3>
+                    <ul class="lista-servicios">
+                        <li><strong>Tapizados:</strong> Limpieza profunda y remoción de manchas en asientos (tela o cuero).</li>
+                        <li><strong>Descontaminación de plásticos en gral:</strong> Eliminación de suciedad rebelde y microorganismos en todo el habitáculo.</li>
+                        <li><strong>Hidratación de plásticos:</strong> Nutrición profunda para torpedos y paneles con filtro de protección UV.</li>
+                        <li><strong>Limpieza de techos:</strong> Remoción meticulosa de manchas con técnicas que cuizan el pegamento original.</li>
+                        <li><strong>Limpieza de pisos:</strong> Aspirado extremo, cepillado y lavado de la alfombra base de tu vehículo.</li>
+                    </ul>
+                </div>
+
+                <div class="categoria-card">
+                    <h3>🔹 Limpieza para el Hogar</h3>
+                    <ul class="lista-servicios">
+                        <li><strong>Sillones y Sofás:</strong> Desinfección extrema, remoción de manchas de uso diario y eliminación de olores.</li>
+                        <li><strong>Alfombras:</strong> Lavado e higienización integral para recuperar texturas y colores originales.</li>
+                        <li><strong>Sommiers:</strong> Eliminación de ácaros, aureolas y suciedad profunda para un descanso saludable.</li>
+                        <li><strong>Sillas:</strong> Renovación total de tapizados en sillas de comedor, living u oficinas.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="contacto-section">
+        <div class="container">
+            <h2>¡Contactanos Hoy Mismo!</h2>
+            <p>Hacé clic en cualquiera de nuestros canales oficiales para cotizar tu servicio o ver nuestros trabajos:</p>
+            
+            <div class="btn-container">
+                <a href="https://wa.me/5492914438419" target="_blank" class="btn btn-whatsapp">💬 WhatsApp (Contacto 1: 2914438419)</a>
+                <a href="https://wa.me/5492996339762" target="_blank" class="btn btn-whatsapp">💬 WhatsApp (Contacto 2: 2996339762)</a>
+                
+                <a href="https://www.instagram.com/glowcar06" target="_blank" class="btn btn-instagram">📸 Instagram (@glowcar06)</a>
+                
+                <a href="https://www.facebook.com/profile.php?id=61590527757764" target="_blank" class="btn btn-facebook">👤 Facebook (GlowCar Oficial)</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 <strong>Glowcar</strong> - Bahía Blanca. Estética Vehicular y del Hogar a Domicilio. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+</body>
+</html>

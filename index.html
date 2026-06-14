@@ -287,17 +287,59 @@
     }
     footer p { color: var(--muted); font-size: 0.8rem; margin-top: 8px; }
 
+    /* ── HAMBURGUESA (solo mobile) ── */
+    .hamburger {
+      display: none;
+      flex-direction: column; gap: 5px;
+      background: none; border: none; cursor: pointer; padding: 4px;
+    }
+    .hamburger span {
+      display: block; width: 26px; height: 2.5px;
+      background: var(--orange); border-radius: 2px;
+      transition: transform 0.3s, opacity 0.3s;
+    }
+    .hamburger.open span:nth-child(1) { transform: translateY(7.5px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7.5px) rotate(-45deg); }
+
+    .mobile-menu {
+      display: none;
+      position: fixed; top: 60px; left: 0; right: 0; z-index: 99;
+      background: rgba(10,10,10,0.97);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255,107,0,0.2);
+      flex-direction: column; align-items: center; gap: 0;
+      overflow: hidden; max-height: 0;
+      transition: max-height 0.35s ease;
+    }
+    .mobile-menu.open { max-height: 300px; }
+    .mobile-menu a {
+      color: var(--white); text-decoration: none;
+      font-size: 1rem; font-weight: 600; letter-spacing: 2px;
+      text-transform: uppercase; padding: 18px 24px; width: 100%; text-align: center;
+      border-bottom: 1px solid rgba(255,107,0,0.08);
+      transition: color 0.2s, background 0.2s;
+    }
+    .mobile-menu a:hover { color: var(--orange); background: rgba(255,107,0,0.05); }
+
     /* ── RESPONSIVE ── */
     @media (max-width: 700px) {
       nav { padding: 14px 20px; }
       .nav-links { gap: 16px; }
       .nav-links a { font-size: 0.75rem; }
       section { padding: 70px 16px; }
-      .main-service { flex-direction: column; text-align: center; }
       .domicilio-card { padding: 40px 24px; }
     }
     @media (max-width: 480px) {
       .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .mobile-menu { display: flex; }
+      .hero {
+        padding-top: 72px;
+        padding-bottom: 48px;
+        min-height: unset;
+      }
+      .hero-title { font-size: clamp(4rem, 22vw, 6rem); }
     }
     @media (prefers-reduced-motion: reduce) {
       * { animation: none !important; transition: none !important; }
@@ -315,7 +357,31 @@
     <a href="#domicilio">A Domicilio</a>
     <a href="#redes">Redes</a>
   </div>
+  <button class="hamburger" id="hamburger" aria-label="Menú">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
+
+<!-- MENÚ MOBILE -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#vehicular" onclick="closeMenu()">Estética Vehicular</a>
+  <a href="#hogar" onclick="closeMenu()">Hogar</a>
+  <a href="#domicilio" onclick="closeMenu()">A Domicilio</a>
+  <a href="#redes" onclick="closeMenu()">Redes</a>
+</div>
+
+<script>
+  const btn = document.getElementById('hamburger');
+  const menu = document.getElementById('mobileMenu');
+  btn.addEventListener('click', () => {
+    btn.classList.toggle('open');
+    menu.classList.toggle('open');
+  });
+  function closeMenu() {
+    btn.classList.remove('open');
+    menu.classList.remove('open');
+  }
+</script>
 
 <!-- HERO -->
 <section class="hero">

@@ -3,6 +3,18 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- ═══ SEO BÁSICO ═══ -->
+  <meta name="description" content="GlowCar - Estética vehicular profesional y limpieza a domicilio en Bahía Blanca. Lavado interior, tapizados, detailing, sillones, alfombras y mucho más." />
+  <meta name="keywords" content="estética vehicular Bahía Blanca, lavado de autos Bahía Blanca, limpieza a domicilio Bahía Blanca, detailing autos, tapizados, GlowCar" />
+  <meta name="author" content="GlowCar" />
+  <meta name="robots" content="index, follow" />
+
+  <!-- ═══ OPEN GRAPH (cómo se ve al compartir en WhatsApp, Facebook, etc.) ═══ -->
+  <meta property="og:title" content="GlowCar – Estética Vehicular y Limpieza a Domicilio · Bahía Blanca" />
+  <meta property="og:description" content="Estética vehicular profesional y limpieza a domicilio en Bahía Blanca. Lavado interior, tapizados, detailing, sillones, alfombras y mucho más." />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="es_AR" />
   <title>GLOWCAR – Estética Vehicular y Limpieza a Domicilio · Bahía Blanca</title>
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet" />
   <style>
@@ -240,9 +252,11 @@
       background: var(--card);
       border: 1px solid rgba(255,107,0,0.1);
       border-radius: var(--radius);
-      padding: 36px 28px;
+      padding: 24px 24px 20px;
       transition: border-color 0.25s, transform 0.2s, box-shadow 0.25s, background 0.35s;
       position: relative; overflow: hidden;
+      cursor: pointer;
+      user-select: none;
     }
     .service-card::after {
       content: '';
@@ -254,10 +268,68 @@
     }
     .service-card:hover {
       border-color: rgba(255,107,0,0.35);
-      transform: translateY(-4px);
-      box-shadow: 0 16px 40px rgba(255,107,0,0.12);
+      transform: translateY(-3px);
+      box-shadow: 0 12px 32px rgba(255,107,0,0.1);
     }
     .service-card:hover::after { transform: scaleX(1); }
+    .service-card.dimmed {
+      opacity: 0.4;
+      transition: opacity 0.3s ease, border-color 0.25s, transform 0.2s, box-shadow 0.25s, background 0.35s;
+    }
+    .service-card.dimmed:hover {
+      transform: none;
+      box-shadow: none;
+      border-color: rgba(255,107,0,0.1);
+    }
+    .service-card-top {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .service-card-top .service-icon {
+      flex-shrink: 0;
+      margin-bottom: 0;
+    }
+    .service-card-top h3 {
+      flex: 1;
+      margin-bottom: 0;
+    }
+    .service-toggle {
+      flex-shrink: 0;
+      width: 28px; height: 28px;
+      border-radius: 50%;
+      background: rgba(255,107,0,0.1);
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.2s, transform 0.35s ease;
+    }
+    .service-toggle svg {
+      stroke: var(--orange);
+      transition: transform 0.35s ease;
+    }
+    .service-card.open .service-toggle {
+      background: rgba(255,107,0,0.2);
+    }
+    .service-card.open .service-toggle svg {
+      transform: rotate(180deg);
+    }
+    .service-desc {
+      max-height: 0;
+      overflow: hidden;
+      opacity: 0;
+      transition: max-height 0.4s ease, opacity 0.3s ease, padding-top 0.3s ease;
+      font-size: 0.86rem;
+      color: var(--muted);
+      line-height: 1.65;
+      padding-top: 0;
+      border-top: 1px solid transparent;
+    }
+    .service-card.open .service-desc {
+      max-height: 300px;
+      opacity: 1;
+      padding-top: 14px;
+      margin-top: 14px;
+      border-top: 1px solid rgba(255,107,0,0.1);
+    }
 
     .service-icon {
       display: block; margin-bottom: 20px;
@@ -270,10 +342,9 @@
     }
     .service-card h3 {
       font-family: 'Bebas Neue', sans-serif;
-      font-size: 1.4rem; letter-spacing: 2px; color: var(--text-heading);
-      margin-bottom: 8px;
+      font-size: 1.3rem; letter-spacing: 2px; color: var(--text-heading);
+      margin-bottom: 0;
     }
-    .service-card p { font-size: 0.88rem; color: var(--muted); line-height: 1.65; }
     .main-service {
       grid-column: 1 / -1;
       background: var(--gradient-main);
@@ -737,39 +808,57 @@
   <div class="services-grid">
 
     <div class="service-card fade-in">
-      <span class="service-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="40" height="40"><path d="M4 12h8M4 12a4 4 0 0 0 4 4h6a4 4 0 0 0 4-4v-2a4 4 0 0 0-4-4h-2"/><path d="M16 6V4a2 2 0 0 0-2-2h-2a2 2 0 0 0-2 2v2"/><path d="M18 12h.01M14 16v4M10 16v4"/></svg></span>
-      <h3>Lavado Profundo del Interior</h3>
-      <p>Limpieza general y a fondo de todo el interior del vehículo: aspirado, desinfección y eliminación de polvo y suciedad acumulada en cada rincón.</p>
+      <div class="service-card-top">
+        <span class="service-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="36" height="36"><path d="M4 12h8M4 12a4 4 0 0 0 4 4h6a4 4 0 0 0 4-4v-2a4 4 0 0 0-4-4h-2"/><path d="M16 6V4a2 2 0 0 0-2-2h-2a2 2 0 0 0-2 2v2"/><path d="M18 12h.01M14 16v4M10 16v4"/></svg></span>
+        <h3>Lavado Profundo del Interior</h3>
+        <span class="service-toggle"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
+      </div>
+      <div class="service-desc">Limpieza general y a fondo de todo el interior del vehículo: aspirado, desinfección y eliminación de polvo y suciedad acumulada en cada rincón.</div>
     </div>
 
     <div class="service-card fade-in fade-in-delay-1">
-      <span class="service-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="40" height="40"><circle cx="10" cy="10" r="7"/><path d="M21 21l-4.35-4.35"/><path d="M7 10h6M10 7v6"/></svg></span>
-      <h3>Detallado en Profundidad Total</h3>
-      <p>Tratamiento minucioso de cada superficie del interior, prestando atención al detalle en zonas difíciles para un resultado realmente impecable.</p>
+      <div class="service-card-top">
+        <span class="service-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="36" height="36"><circle cx="10" cy="10" r="7"/><path d="M21 21l-4.35-4.35"/><path d="M7 10h6M10 7v6"/></svg></span>
+        <h3>Detallado en Profundidad Total</h3>
+        <span class="service-toggle"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
+      </div>
+      <div class="service-desc">Tratamiento minucioso de cada superficie del interior, prestando atención al detalle en zonas difíciles para un resultado realmente impecable.</div>
     </div>
 
     <div class="service-card fade-in fade-in-delay-2">
-      <span class="service-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="40" height="40"><path d="M9 2h6l1 4H8L9 2z"/><rect x="6" y="6" width="12" height="14" rx="3"/><path d="M9 11h6M9 15h4"/></svg></span>
-      <h3>Descontaminación e Hidratación de Torpedo y Paneles</h3>
-      <p>Eliminamos contaminantes y residuos del torpedo y los paneles de puerta, y recuperamos su color y flexibilidad con hidratante profesional.</p>
+      <div class="service-card-top">
+        <span class="service-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="36" height="36"><path d="M9 2h6l1 4H8L9 2z"/><rect x="6" y="6" width="12" height="14" rx="3"/><path d="M9 11h6M9 15h4"/></svg></span>
+        <h3>Descontaminación e Hidratación de Torpedo y Paneles</h3>
+        <span class="service-toggle"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
+      </div>
+      <div class="service-desc">Eliminamos contaminantes y residuos del torpedo y los paneles de puerta, y recuperamos su color y flexibilidad con hidratante profesional.</div>
     </div>
 
     <div class="service-card fade-in fade-in-delay-3">
-      <span class="service-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="40" height="40"><path d="M4 11V7a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v4"/><path d="M4 11a4 4 0 0 0 4 4h8a4 4 0 0 0 4-4"/><path d="M7 19v-4M17 19v-4"/><path d="M5 19h14"/></svg></span>
-      <h3>Tapizados / Tela - Cuero</h3>
-      <p>Limpieza profunda de tapizado en tela o cuero. Removemos manchas, olores y suciedad acumulada para que el interior de tu auto luzca impecable.</p>
+      <div class="service-card-top">
+        <span class="service-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="36" height="36"><path d="M4 11V7a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v4"/><path d="M4 11a4 4 0 0 0 4 4h8a4 4 0 0 0 4-4"/><path d="M7 19v-4M17 19v-4"/><path d="M5 19h14"/></svg></span>
+        <h3>Tapizados / Tela - Cuero</h3>
+        <span class="service-toggle"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
+      </div>
+      <div class="service-desc">Limpieza profunda de tapizado en tela o cuero. Removemos manchas, olores y suciedad acumulada para que el interior de tu auto luzca impecable.</div>
     </div>
 
     <div class="service-card fade-in fade-in-delay-4">
-      <span class="service-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="40" height="40"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></span>
-      <h3>Techo / Tapizado</h3>
-      <p>Tratamiento y lavado del techo interior del vehículo, removiendo manchas, suciedad y malos olores.</p>
+      <div class="service-card-top">
+        <span class="service-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="36" height="36"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></span>
+        <h3>Techo / Tapizado</h3>
+        <span class="service-toggle"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
+      </div>
+      <div class="service-desc">Tratamiento y lavado del techo interior del vehículo, removiendo manchas, suciedad y malos olores.</div>
     </div>
 
     <div class="service-card fade-in">
-      <span class="service-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="40" height="40"><rect x="2" y="15" width="20" height="5" rx="1"/><path d="M5 15V9a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v6"/><path d="M9 12h6"/></svg></span>
-      <h3>Piso / Alfombra</h3>
-      <p>Aspirado profundo y lavado de pisos y alfombras del auto, dejando el habitáculo completamente renovado.</p>
+      <div class="service-card-top">
+        <span class="service-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="36" height="36"><rect x="2" y="15" width="20" height="5" rx="1"/><path d="M5 15V9a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v6"/><path d="M9 12h6"/></svg></span>
+        <h3>Piso / Alfombra</h3>
+        <span class="service-toggle"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
+      </div>
+      <div class="service-desc">Aspirado profundo y lavado de pisos y alfombras del auto, dejando el habitáculo completamente renovado.</div>
     </div>
 
   </div>
@@ -783,27 +872,39 @@
   <div class="services-grid" style="max-width:900px;">
 
     <div class="service-card fade-in fade-in-delay-1">
-      <span class="service-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="40" height="40"><path d="M2 9a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v2a2 2 0 0 0-2 2v2H4v-2a2 2 0 0 0-2-2V9z"/><path d="M4 15v3M20 15v3M7 7V5a1 1 0 0 1 1-1h8a1 1 0 0 1 1 1v2"/></svg></span>
-      <h3>Sillones y Sofás</h3>
-      <p>Limpieza profunda de sillones y sofás tapizados. Eliminamos manchas, ácaros y olores para renovar tu living.</p>
+      <div class="service-card-top">
+        <span class="service-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="36" height="36"><path d="M2 9a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v2a2 2 0 0 0-2 2v2H4v-2a2 2 0 0 0-2-2V9z"/><path d="M4 15v3M20 15v3M7 7V5a1 1 0 0 1 1-1h8a1 1 0 0 1 1 1v2"/></svg></span>
+        <h3>Sillones y Sofás</h3>
+        <span class="service-toggle"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
+      </div>
+      <div class="service-desc">Limpieza profunda de sillones y sofás tapizados. Eliminamos manchas, ácaros y olores para renovar tu living.</div>
     </div>
 
     <div class="service-card fade-in">
-      <span class="service-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="40" height="40"><rect x="3" y="7" width="18" height="11" rx="2"/><path d="M3 11h18M3 15h18M7 7V5M17 7V5M10 11v4M14 11v4"/></svg></span>
-      <h3>Alfombras</h3>
-      <p>Lavado y tratamiento de alfombras de todos los tamaños. Las dejamos limpias, desinfectadas y libres de polvo.</p>
+      <div class="service-card-top">
+        <span class="service-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="36" height="36"><rect x="3" y="7" width="18" height="11" rx="2"/><path d="M3 11h18M3 15h18M7 7V5M17 7V5M10 11v4M14 11v4"/></svg></span>
+        <h3>Alfombras</h3>
+        <span class="service-toggle"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
+      </div>
+      <div class="service-desc">Lavado y tratamiento de alfombras de todos los tamaños. Las dejamos limpias, desinfectadas y libres de polvo.</div>
     </div>
 
     <div class="service-card fade-in fade-in-delay-1">
-      <span class="service-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="40" height="40"><path d="M2 20v-6a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v6"/><path d="M2 14V7a2 2 0 0 1 2-2h3v9"/><path d="M17 9h2a2 2 0 0 1 2 2v3"/><path d="M2 20h20"/><path d="M9 12v-2h6v2"/></svg></span>
-      <h3>Sommiers</h3>
-      <p>Desinfección y limpieza profunda de sommiers. Eliminamos ácaros, manchas y bacterias para un descanso más saludable.</p>
+      <div class="service-card-top">
+        <span class="service-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="36" height="36"><path d="M2 20v-6a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v6"/><path d="M2 14V7a2 2 0 0 1 2-2h3v9"/><path d="M17 9h2a2 2 0 0 1 2 2v3"/><path d="M2 20h20"/><path d="M9 12v-2h6v2"/></svg></span>
+        <h3>Sommiers</h3>
+        <span class="service-toggle"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
+      </div>
+      <div class="service-desc">Desinfección y limpieza profunda de sommiers. Eliminamos ácaros, manchas y bacterias para un descanso más saludable.</div>
     </div>
 
     <div class="service-card fade-in fade-in-delay-2">
-      <span class="service-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="40" height="40"><rect x="6" y="2" width="12" height="8" rx="1"/><rect x="4" y="10" width="16" height="4" rx="1"/><path d="M8 14v8M16 14v8M8 18h8"/></svg></span>
-      <h3>Sillas</h3>
-      <p>Limpieza de sillas tapizadas de comedor, escritorio u oficina. Las dejamos como nuevas sin que tengas que salir de tu casa.</p>
+      <div class="service-card-top">
+        <span class="service-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="36" height="36"><rect x="6" y="2" width="12" height="8" rx="1"/><rect x="4" y="10" width="16" height="4" rx="1"/><path d="M8 14v8M16 14v8M8 18h8"/></svg></span>
+        <h3>Sillas</h3>
+        <span class="service-toggle"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
+      </div>
+      <div class="service-desc">Limpieza de sillas tapizadas de comedor, escritorio u oficina. Las dejamos como nuevas sin que tengas que salir de tu casa.</div>
     </div>
 
   </div>
@@ -973,6 +1074,27 @@
     const url = `https://wa.me/${destNumero}?text=${encodeURIComponent(texto)}`;
     window.open(url, '_blank');
   }
+
+  // Acordeón de tarjetas de servicio
+  document.querySelectorAll('.service-card').forEach(function(card) {
+    card.addEventListener('click', function(e) {
+      e.stopPropagation();
+      var allCards = Array.from(document.querySelectorAll('.service-card'));
+      var wasOpen = card.classList.contains('open');
+
+      allCards.forEach(function(c) {
+        c.classList.remove('open');
+        c.classList.remove('dimmed');
+      });
+
+      if (!wasOpen) {
+        card.classList.add('open');
+        allCards.forEach(function(c) {
+          if (c !== card) c.classList.add('dimmed');
+        });
+      }
+    });
+  });
 </script>
 
 <!-- SDK de Facebook (necesario para el embed de Facebook) -->
@@ -1128,6 +1250,7 @@
   <div class="f-logo">GLOWCAR</div>
   <p>Estética Vehicular & Limpieza para el Hogar · Bahía Blanca · Vamos a Domicilio</p>
 </footer>
+
 
 </body>
 </html>

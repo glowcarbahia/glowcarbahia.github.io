@@ -1211,12 +1211,12 @@
       <label>Servicios que necesitás <span style="color:var(--orange)">(podés elegir varios)</span></label>
       <div class="servicios-checks">
         <p class="checks-category">🚗 Estética Vehicular</p>
-        <label class="check-item"><input type="checkbox" class="veh-check" value="Lavado profundo del interior en general" onchange="actualizarResumen()"> Lavado profundo del interior en general</label>
-        <label class="check-item"><input type="checkbox" class="veh-check" value="Detallado en profundidad total" onchange="actualizarResumen()"> Detallado en profundidad total</label>
-        <label class="check-item"><input type="checkbox" class="veh-check" value="Descontaminación e hidratación de torpedo y paneles de puerta" onchange="actualizarResumen()"> Descontaminación e hidratación de torpedo y paneles de puerta</label>
-        <label class="check-item"><input type="checkbox" class="veh-check" value="Tapizados / tela - cuero" onchange="actualizarResumen()"> Tapizados / tela - cuero</label>
-        <label class="check-item"><input type="checkbox" class="veh-check" value="Techo / tapizado" onchange="actualizarResumen()"> Techo / tapizado</label>
-        <label class="check-item"><input type="checkbox" class="veh-check" value="Piso / alfombra" onchange="actualizarResumen()"> Piso / alfombra</label>
+        <label class="check-item"><input type="checkbox" value="Lavado profundo del interior en general" onchange="actualizarResumen()"> Lavado profundo del interior en general</label>
+        <label class="check-item"><input type="checkbox" value="Detallado en profundidad total" onchange="actualizarResumen()"> Detallado en profundidad total</label>
+        <label class="check-item"><input type="checkbox" value="Descontaminación e hidratación de torpedo y paneles de puerta" onchange="actualizarResumen()"> Descontaminación e hidratación de torpedo y paneles de puerta</label>
+        <label class="check-item"><input type="checkbox" value="Tapizados / tela - cuero" onchange="actualizarResumen()"> Tapizados / tela - cuero</label>
+        <label class="check-item"><input type="checkbox" value="Techo / tapizado" onchange="actualizarResumen()"> Techo / tapizado</label>
+        <label class="check-item"><input type="checkbox" value="Piso / alfombra" onchange="actualizarResumen()"> Piso / alfombra</label>
         <p class="checks-category" style="margin-top:12px;">🏠 Limpieza para el Hogar</p>
         <label class="check-item"><input type="checkbox" value="Sillones y sofás" onchange="actualizarResumen()"> Sillones y sofás</label>
         <label class="check-item"><input type="checkbox" value="Alfombras" onchange="actualizarResumen()"> Alfombras</label>
@@ -1232,15 +1232,6 @@
       <div id="resumen-servicios" style="display:none; margin-top:14px; background:rgba(255,107,0,0.07); border:1px solid rgba(255,107,0,0.25); border-radius:10px; padding:14px 18px;">
         <p style="font-size:0.75rem; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:var(--orange); margin-bottom:8px;">✅ Tus servicios</p>
         <ul id="lista-resumen" style="list-style:none; padding:0; margin:0;"></ul>
-      </div>
-    </div>
-
-    <div class="form-group" id="grupo-vehiculo" style="display:none;">
-      <label>Tipo de vehículo</label>
-      <div class="pago-btns">
-        <button type="button" class="pago-btn" id="veh-auto" onclick="seleccionarVehiculo('auto')">🚗 Auto</button>
-        <button type="button" class="pago-btn" id="veh-camioneta" onclick="seleccionarVehiculo('camioneta')">🚙 Camioneta</button>
-        <button type="button" class="pago-btn" id="veh-moto" onclick="seleccionarVehiculo('moto')">🏍️ Moto</button>
       </div>
     </div>
 
@@ -1288,7 +1279,6 @@
 <script>
   let destNumero = '542914070116'; // Benjamín
   let medioPago = '';
-  let tipoVehiculo = '';
   let horarioTexto = '';
 
   function seleccionarHorario(id, texto) {
@@ -1308,18 +1298,6 @@
     document.getElementById('pago-' + tipo).classList.add('selected');
   }
 
-  function seleccionarVehiculo(tipo) {
-    tipoVehiculo = tipo;
-    document.querySelectorAll('#veh-auto, #veh-camioneta, #veh-moto').forEach(b => b.classList.remove('selected'));
-    document.getElementById('veh-' + tipo).classList.add('selected');
-  }
-
-  function toggleGrupoVehiculo() {
-    const hayVehicular = document.querySelectorAll('.veh-check:checked').length > 0;
-    document.getElementById('grupo-vehiculo').style.display = hayVehicular ? 'block' : 'none';
-    if (!hayVehicular) tipoVehiculo = '';
-  }
-
   function seleccionarDest(id, numero) {
     document.querySelectorAll('.dest-btn').forEach(b => b.classList.remove('selected'));
     document.getElementById(id).classList.add('selected');
@@ -1334,7 +1312,6 @@
   }
 
   function actualizarResumen() {
-    toggleGrupoVehiculo();
     const checks   = document.querySelectorAll('.servicios-checks input[type="checkbox"]:checked');
     const resumen  = document.getElementById('resumen-servicios');
     const lista    = document.getElementById('lista-resumen');
@@ -1364,7 +1341,6 @@
     const mensaje    = document.getElementById('f-mensaje').value.trim();
     const checks     = document.querySelectorAll('.servicios-checks input[type="checkbox"]:checked');
     const otroVal    = document.getElementById('input-otro').value.trim();
-    const hayVehicular = document.querySelectorAll('.veh-check:checked').length > 0;
 
     const servicios = Array.from(checks).map(c => {
       if (c.value === 'otro') return otroVal ? otroVal : null;
@@ -1374,7 +1350,6 @@
     if (!nombre)              { alert('Por favor ingresá tu nombre.'); return; }
     if (!servicios.length)    { alert('Por favor elegí al menos un servicio.'); return; }
     if (!direccion)           { alert('Por favor ingresá tu dirección.'); return; }
-    if (hayVehicular && !tipoVehiculo) { alert('Por favor indicá el tipo de vehículo.'); return; }
 
     let fechaTexto = '';
     if (fecha) {
@@ -1382,9 +1357,8 @@
       fechaTexto = `${d}/${m}/${y}`;
     }
 
-    const vehiculoLabel = { auto: '🚗 Auto', camioneta: '🚙 Camioneta', moto: '🏍️ Moto' }[tipoVehiculo] || '';
     const listaServicios = servicios.map(s => `  • ${s}`).join('\n');
-    const texto = `¡Hola GLOWCAR! 👋\n\n*Nombre:* ${nombre}\n*Dirección:* ${direccion}${(fechaTexto || horario) ? '\n*Fecha/horario preferido:* ' + [fechaTexto, horario].filter(Boolean).join(' - ') : ''}${horarioDet ? '\n*Detalle de horario:* ' + horarioDet : ''}${vehiculoLabel ? '\n*Vehículo:* ' + vehiculoLabel : ''}\n*Servicios:*\n${listaServicios}${medioPago ? '\n*Medio de pago:* ' + (medioPago === 'efectivo' ? '💵 Efectivo' : '📲 Transferencia') : ''}${mensaje ? '\n*Mensaje:* ' + mensaje : ''}\n\nQuiero reservar un turno 🙌`;
+    const texto = `¡Hola GLOWCAR! 👋\n\n*Nombre:* ${nombre}\n*Dirección:* ${direccion}${(fechaTexto || horario) ? '\n*Fecha/horario preferido:* ' + [fechaTexto, horario].filter(Boolean).join(' - ') : ''}${horarioDet ? '\n*Detalle de horario:* ' + horarioDet : ''}\n*Servicios:*\n${listaServicios}${medioPago ? '\n*Medio de pago:* ' + (medioPago === 'efectivo' ? '💵 Efectivo' : '📲 Transferencia') : ''}${mensaje ? '\n*Mensaje:* ' + mensaje : ''}\n\nQuiero reservar un turno 🙌`;
     const url = `https://wa.me/${destNumero}?text=${encodeURIComponent(texto)}`;
     window.open(url, '_blank');
   }

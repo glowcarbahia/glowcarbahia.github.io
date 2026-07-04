@@ -790,6 +790,8 @@
     }
     .form-group select option { background: var(--bg-input); color: var(--text-heading); }
     .form-group textarea { resize: vertical; min-height: 100px; }
+    .form-group input[type="date"] { color-scheme: dark; }
+    [data-theme="light"] .form-group input[type="date"] { color-scheme: light; }
 
     .form-destinatario {
       display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
@@ -1209,12 +1211,12 @@
       <label>Servicios que necesitás <span style="color:var(--orange)">(podés elegir varios)</span></label>
       <div class="servicios-checks">
         <p class="checks-category">🚗 Estética Vehicular</p>
-        <label class="check-item"><input type="checkbox" value="Lavado profundo del interior en general" onchange="actualizarResumen()"> Lavado profundo del interior en general</label>
-        <label class="check-item"><input type="checkbox" value="Detallado en profundidad total" onchange="actualizarResumen()"> Detallado en profundidad total</label>
-        <label class="check-item"><input type="checkbox" value="Descontaminación e hidratación de torpedo y paneles de puerta" onchange="actualizarResumen()"> Descontaminación e hidratación de torpedo y paneles de puerta</label>
-        <label class="check-item"><input type="checkbox" value="Tapizados / tela - cuero" onchange="actualizarResumen()"> Tapizados / tela - cuero</label>
-        <label class="check-item"><input type="checkbox" value="Techo / tapizado" onchange="actualizarResumen()"> Techo / tapizado</label>
-        <label class="check-item"><input type="checkbox" value="Piso / alfombra" onchange="actualizarResumen()"> Piso / alfombra</label>
+        <label class="check-item"><input type="checkbox" class="veh-check" value="Lavado profundo del interior en general" onchange="actualizarResumen()"> Lavado profundo del interior en general</label>
+        <label class="check-item"><input type="checkbox" class="veh-check" value="Detallado en profundidad total" onchange="actualizarResumen()"> Detallado en profundidad total</label>
+        <label class="check-item"><input type="checkbox" class="veh-check" value="Descontaminación e hidratación de torpedo y paneles de puerta" onchange="actualizarResumen()"> Descontaminación e hidratación de torpedo y paneles de puerta</label>
+        <label class="check-item"><input type="checkbox" class="veh-check" value="Tapizados / tela - cuero" onchange="actualizarResumen()"> Tapizados / tela - cuero</label>
+        <label class="check-item"><input type="checkbox" class="veh-check" value="Techo / tapizado" onchange="actualizarResumen()"> Techo / tapizado</label>
+        <label class="check-item"><input type="checkbox" class="veh-check" value="Piso / alfombra" onchange="actualizarResumen()"> Piso / alfombra</label>
         <p class="checks-category" style="margin-top:12px;">🏠 Limpieza para el Hogar</p>
         <label class="check-item"><input type="checkbox" value="Sillones y sofás" onchange="actualizarResumen()"> Sillones y sofás</label>
         <label class="check-item"><input type="checkbox" value="Alfombras" onchange="actualizarResumen()"> Alfombras</label>
@@ -1233,9 +1235,35 @@
       </div>
     </div>
 
+    <div class="form-group" id="grupo-vehiculo" style="display:none;">
+      <label>Tipo de vehículo</label>
+      <div class="pago-btns">
+        <button type="button" class="pago-btn" id="veh-auto" onclick="seleccionarVehiculo('auto')">🚗 Auto</button>
+        <button type="button" class="pago-btn" id="veh-camioneta" onclick="seleccionarVehiculo('camioneta')">🚙 Camioneta</button>
+        <button type="button" class="pago-btn" id="veh-moto" onclick="seleccionarVehiculo('moto')">🏍️ Moto</button>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Dirección</label>
+      <input type="text" id="f-direccion" placeholder="Calle, número y barrio" />
+    </div>
+
+    <div class="form-group">
+      <label>Fecha y horario preferido</label>
+      <input type="date" id="f-fecha" style="margin-bottom:12px;" />
+      <div class="pago-btns" id="horario-btns">
+        <button type="button" class="pago-btn" id="hor-manana" onclick="seleccionarHorario('manana', 'Mañana')">🌅 Mañana</button>
+        <button type="button" class="pago-btn" id="hor-tarde" onclick="seleccionarHorario('tarde', 'Tarde')">☀️ Tarde</button>
+        <button type="button" class="pago-btn" id="hor-cualquiera" onclick="seleccionarHorario('cualquiera', 'Cualquier horario')">🕐 Cualquiera</button>
+      </div>
+      <input type="text" id="f-horario-detalle" placeholder="¿Algo puntual sobre el horario? (opcional)"
+        style="margin-top:10px; background:var(--bg-input-alt); border:1px solid rgba(255,107,0,0.15); border-radius:8px; padding:11px 14px; color:var(--text-heading); font-family:'Poppins',sans-serif; font-size:0.85rem; outline:none; width:100%;" />
+    </div>
+
     <div class="form-group">
       <label>Mensaje</label>
-      <textarea id="f-mensaje" placeholder="Contanos más detalles, tu dirección, o cualquier consulta..."></textarea>
+      <textarea id="f-mensaje" placeholder="Contanos más detalles o cualquier consulta..."></textarea>
     </div>
 
     <div class="form-group">
@@ -1260,11 +1288,36 @@
 <script>
   let destNumero = '542914070116'; // Benjamín
   let medioPago = '';
+  let tipoVehiculo = '';
+  let horarioTexto = '';
+
+  function seleccionarHorario(id, texto) {
+    horarioTexto = texto;
+    document.querySelectorAll('#hor-manana, #hor-tarde, #hor-cualquiera').forEach(b => b.classList.remove('selected'));
+    document.getElementById('hor-' + id).classList.add('selected');
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const fechaInput = document.getElementById('f-fecha');
+    if (fechaInput) fechaInput.min = new Date().toISOString().split('T')[0];
+  });
 
   function seleccionarPago(tipo) {
     medioPago = tipo;
-    document.querySelectorAll('.pago-btn').forEach(b => b.classList.remove('selected'));
+    document.querySelectorAll('#pago-efectivo, #pago-transferencia').forEach(b => b.classList.remove('selected'));
     document.getElementById('pago-' + tipo).classList.add('selected');
+  }
+
+  function seleccionarVehiculo(tipo) {
+    tipoVehiculo = tipo;
+    document.querySelectorAll('#veh-auto, #veh-camioneta, #veh-moto').forEach(b => b.classList.remove('selected'));
+    document.getElementById('veh-' + tipo).classList.add('selected');
+  }
+
+  function toggleGrupoVehiculo() {
+    const hayVehicular = document.querySelectorAll('.veh-check:checked').length > 0;
+    document.getElementById('grupo-vehiculo').style.display = hayVehicular ? 'block' : 'none';
+    if (!hayVehicular) tipoVehiculo = '';
   }
 
   function seleccionarDest(id, numero) {
@@ -1281,6 +1334,7 @@
   }
 
   function actualizarResumen() {
+    toggleGrupoVehiculo();
     const checks   = document.querySelectorAll('.servicios-checks input[type="checkbox"]:checked');
     const resumen  = document.getElementById('resumen-servicios');
     const lista    = document.getElementById('lista-resumen');
@@ -1302,22 +1356,35 @@
   }
 
   function enviarWA() {
-    const nombre   = document.getElementById('f-nombre').value.trim();
-    const mensaje  = document.getElementById('f-mensaje').value.trim();
-    const checks   = document.querySelectorAll('.servicios-checks input[type="checkbox"]:checked');
-    const otroVal  = document.getElementById('input-otro').value.trim();
+    const nombre     = document.getElementById('f-nombre').value.trim();
+    const direccion  = document.getElementById('f-direccion').value.trim();
+    const fecha      = document.getElementById('f-fecha').value;
+    const horario    = horarioTexto;
+    const horarioDet = document.getElementById('f-horario-detalle').value.trim();
+    const mensaje    = document.getElementById('f-mensaje').value.trim();
+    const checks     = document.querySelectorAll('.servicios-checks input[type="checkbox"]:checked');
+    const otroVal    = document.getElementById('input-otro').value.trim();
+    const hayVehicular = document.querySelectorAll('.veh-check:checked').length > 0;
 
     const servicios = Array.from(checks).map(c => {
       if (c.value === 'otro') return otroVal ? otroVal : null;
       return c.value;
     }).filter(Boolean);
 
-    if (!nombre)           { alert('Por favor ingresá tu nombre.'); return; }
-    if (!servicios.length) { alert('Por favor elegí al menos un servicio.'); return; }
-    if (!nombre)         { alert('Por favor ingresá tu nombre.'); return; }
+    if (!nombre)              { alert('Por favor ingresá tu nombre.'); return; }
+    if (!servicios.length)    { alert('Por favor elegí al menos un servicio.'); return; }
+    if (!direccion)           { alert('Por favor ingresá tu dirección.'); return; }
+    if (hayVehicular && !tipoVehiculo) { alert('Por favor indicá el tipo de vehículo.'); return; }
 
+    let fechaTexto = '';
+    if (fecha) {
+      const [y, m, d] = fecha.split('-');
+      fechaTexto = `${d}/${m}/${y}`;
+    }
+
+    const vehiculoLabel = { auto: '🚗 Auto', camioneta: '🚙 Camioneta', moto: '🏍️ Moto' }[tipoVehiculo] || '';
     const listaServicios = servicios.map(s => `  • ${s}`).join('\n');
-    const texto = `¡Hola GLOWCAR! 👋\n\n*Nombre:* ${nombre}\n*Servicios:*\n${listaServicios}${medioPago ? '\n*Medio de pago:* ' + (medioPago === 'efectivo' ? '💵 Efectivo' : '📲 Transferencia') : ''}${mensaje ? '\n*Mensaje:* ' + mensaje : ''}\n\nQuiero reservar un turno 🙌`;
+    const texto = `¡Hola GLOWCAR! 👋\n\n*Nombre:* ${nombre}\n*Dirección:* ${direccion}${(fechaTexto || horario) ? '\n*Fecha/horario preferido:* ' + [fechaTexto, horario].filter(Boolean).join(' - ') : ''}${horarioDet ? '\n*Detalle de horario:* ' + horarioDet : ''}${vehiculoLabel ? '\n*Vehículo:* ' + vehiculoLabel : ''}\n*Servicios:*\n${listaServicios}${medioPago ? '\n*Medio de pago:* ' + (medioPago === 'efectivo' ? '💵 Efectivo' : '📲 Transferencia') : ''}${mensaje ? '\n*Mensaje:* ' + mensaje : ''}\n\nQuiero reservar un turno 🙌`;
     const url = `https://wa.me/${destNumero}?text=${encodeURIComponent(texto)}`;
     window.open(url, '_blank');
   }

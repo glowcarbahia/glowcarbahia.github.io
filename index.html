@@ -138,6 +138,19 @@
       transition: color 0.2s;
     }
     .nav-links a:hover { color: var(--orange); }
+    .nav-links a.nav-promo,
+    .mobile-menu a.nav-promo {
+      background: var(--orange);
+      color: #fff !important;
+      padding: 8px 16px;
+      border-radius: 999px;
+      box-shadow: 0 4px 16px rgba(255,107,0,0.4);
+    }
+    .nav-links a.nav-promo:hover,
+    .mobile-menu a.nav-promo:hover {
+      background: #ff8a33;
+      color: #fff !important;
+    }
 
     /* ── TOGGLE TEMA ── */
     .nav-right { display: flex; align-items: center; gap: 14px; }
@@ -530,6 +543,36 @@
     .promo-off {
       color: var(--orange);
       font-size: 2.2rem;
+    }
+
+    /* ── PROMOCIONES (sección) ── */
+    .promo-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 24px;
+      justify-content: center;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .promo-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 10px;
+      background: linear-gradient(135deg, rgba(255,107,0,0.12), rgba(255,60,0,0.08));
+      border: 1px solid rgba(255,107,0,0.3);
+      border-radius: var(--radius);
+      padding: 28px 32px;
+      width: 280px;
+    }
+    .promo-card .promo-tag { margin-bottom: 4px; }
+    .promo-card .promo-text { font-size: 1.6rem; }
+    .promo-card .promo-valid {
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.78rem;
+      color: var(--muted);
+      margin-top: 4px;
     }
 
     /* ── ÚLTIMAS PUBLICACIONES ── */
@@ -931,12 +974,13 @@
 <nav>
   <a href="#" class="nav-logo" style="text-decoration:none;">GLOWCAR</a>
   <div class="nav-links">
-    <a href="#vehicular">Estética Vehicular</a>
-    <a href="#hogar">Hogar</a>
-    <a href="#domicilio">A Domicilio</a>
-    <a href="#turno">Pedí tu Turno</a>
-    <a href="#publicaciones">Últimas Publicaciones</a>
-    <a href="#redes">Redes</a>
+    <a href="#vehicular">ESTÉTICA VEHICULAR</a>
+    <a href="#hogar">HOGAR</a>
+    <a href="#promociones" class="nav-promo">PROMOS ACTIVAS</a>
+    <a href="#domicilio">A DOMICILIO</a>
+    <a href="#turno">PEDÍ TU TURNO</a>
+    <a href="#publicaciones">ÚLTIMAS PUBLICACIONES</a>
+    <a href="#redes">REDES</a>
   </div>
   <div class="nav-right">
     <button class="theme-toggle" id="themeToggle" aria-label="Cambiar entre modo claro y oscuro" title="Cambiar tema">
@@ -951,12 +995,13 @@
 
 <!-- MENÚ MOBILE -->
 <div class="mobile-menu" id="mobileMenu">
-  <a href="#vehicular" onclick="closeMenu()">Estética Vehicular</a>
-  <a href="#hogar" onclick="closeMenu()">Hogar</a>
-  <a href="#domicilio" onclick="closeMenu()">A Domicilio</a>
-  <a href="#turno" onclick="closeMenu()">Pedí tu Turno</a>
-  <a href="#publicaciones" onclick="closeMenu()">Últimas Publicaciones</a>
-  <a href="#redes" onclick="closeMenu()">Redes</a>
+  <a href="#vehicular" onclick="closeMenu()">ESTÉTICA VEHICULAR</a>
+  <a href="#hogar" onclick="closeMenu()">HOGAR</a>
+  <a href="#promociones" class="nav-promo" onclick="closeMenu()">PROMOS ACTIVAS</a>
+  <a href="#domicilio" onclick="closeMenu()">A DOMICILIO</a>
+  <a href="#turno" onclick="closeMenu()">PEDÍ TU TURNO</a>
+  <a href="#publicaciones" onclick="closeMenu()">ÚLTIMAS PUBLICACIONES</a>
+  <a href="#redes" onclick="closeMenu()">REDES</a>
 </div>
 
 <script>
@@ -1041,12 +1086,6 @@
   -->
   <h2 class="section-title fade-in">Estética <span>Vehicular</span></h2>
   <div class="section-divider"></div>
-
-  <!-- BANNER PROMO -->
-  <div class="promo-banner fade-in">
-    <span class="promo-tag">SEMANA DE LA MARCA</span>
-    <span class="promo-text">25% <span class="promo-off">OFF</span> en <strong>TOYOTA</strong></span>
-  </div>
 
   <div class="services-grid">
 
@@ -1153,6 +1192,27 @@
   </div>
 </section>
 
+<!-- PROMOCIONES -->
+<section id="promociones">
+  <h2 class="section-title fade-in">PROMOS <span>ACTIVAS</span></h2>
+  <div class="section-divider"></div>
+
+  <div class="promo-grid fade-in">
+    <div class="promo-card">
+      <span class="promo-tag">SEMANA DE LA MARCA</span>
+      <span class="promo-text">25% <span class="promo-off">OFF</span> en <strong>TOYOTA</strong></span>
+    </div>
+    <!-- ═══ PLANTILLA: para agregar una nueva promo, copiar el bloque de abajo, ═══
+         descomentarlo y completar el tag y el texto.
+    <div class="promo-card">
+      <span class="promo-tag">NOMBRE DE LA PROMO</span>
+      <span class="promo-text">XX% <span class="promo-off">OFF</span> en <strong>LO QUE SEA</strong></span>
+    </div>
+    ═══════════════════════════════════════════════════════════════════════════ -->
+  </div>
+  <p class="fade-in" style="font-family:'Poppins',sans-serif; font-size:0.85rem; font-weight:600; color:var(--orange); margin-top:20px; display:flex; align-items:center; justify-content:center; gap:8px; text-align:center; background:rgba(255,107,0,0.08); border:1px solid rgba(255,107,0,0.3); border-radius:10px; padding:12px 16px; max-width:520px; margin-left:auto; margin-right:auto;">⚠️ Las promociones no son acumulables entre sí — solo se puede aplicar una por turno.</p>
+</section>
+
 <!-- DOMICILIO -->
 <section id="domicilio">
   <div class="domicilio-card fade-in">
@@ -1193,7 +1253,6 @@
   </div>
 </section>
 
-<!-- FORMULARIO TURNO -->
 <section id="turno">
   <h2 class="section-title fade-in">Pedí tu <span>Turno</span></h2>
   <div class="section-divider"></div>
@@ -1217,6 +1276,23 @@
         <label class="check-item"><input type="checkbox" value="Tapizados / tela - cuero" onchange="actualizarResumen()"> Tapizados / tela - cuero</label>
         <label class="check-item"><input type="checkbox" value="Techo / tapizado" onchange="actualizarResumen()"> Techo / tapizado</label>
         <label class="check-item"><input type="checkbox" value="Piso / alfombra" onchange="actualizarResumen()"> Piso / alfombra</label>
+        <p class="checks-category" style="margin-top:12px;">🎁 Promociones vigentes <span style="font-weight:400; color:var(--muted); font-size:0.75rem;">(no acumulables, se puede elegir solo una)</span></p>
+        <div id="promo-checks" style="margin-top:8px; display:flex; flex-direction:column; gap:6px;">
+          <label class="check-item promo-check-item" style="background:rgba(255,107,0,0.07); border:1px solid rgba(255,107,0,0.25); border-radius:10px; padding:12px 14px;">
+            <input type="checkbox" class="promo-check" data-promo="25% OFF Toyota" onchange="seleccionarUnaPromo(this)">
+            🎉 Quiero aplicar la promo vigente: <strong>25% OFF Toyota</strong>
+          </label>
+          <!-- ═══ PLANTILLA: para sumar otra promoción al formulario, ═══
+               copiar el <label> de arriba, pegarlo aquí debajo, descomentarlo
+               y cambiar el texto y el data-promo. No hace falta tocar el JS:
+               seleccionarUnaPromo() ya funciona para cualquier cantidad de promos
+               y se encarga de que el cliente solo pueda tildar una a la vez.
+          <label class="check-item promo-check-item" style="background:rgba(255,107,0,0.07); border:1px solid rgba(255,107,0,0.25); border-radius:10px; padding:12px 14px;">
+            <input type="checkbox" class="promo-check" data-promo="NOMBRE DE LA NUEVA PROMO" onchange="seleccionarUnaPromo(this)">
+            🎉 Quiero aplicar la promo vigente: <strong>NOMBRE DE LA NUEVA PROMO</strong>
+          </label>
+          ═══════════════════════════════════════════════════════════════════════ -->
+        </div>
         <p class="checks-category" style="margin-top:12px;">🏠 Limpieza para el Hogar</p>
         <label class="check-item"><input type="checkbox" value="Sillones y sofás" onchange="actualizarResumen()"> Sillones y sofás</label>
         <label class="check-item"><input type="checkbox" value="Alfombras" onchange="actualizarResumen()"> Alfombras</label>
@@ -1292,6 +1368,15 @@
     if (fechaInput) fechaInput.min = new Date().toISOString().split('T')[0];
   });
 
+  // Las promociones no son acumulables: si el cliente tilda una, se destildan las demás.
+  function seleccionarUnaPromo(checkbox) {
+    if (checkbox.checked) {
+      document.querySelectorAll('.promo-check').forEach(c => {
+        if (c !== checkbox) c.checked = false;
+      });
+    }
+  }
+
   function seleccionarPago(tipo) {
     medioPago = tipo;
     document.querySelectorAll('#pago-efectivo, #pago-transferencia').forEach(b => b.classList.remove('selected'));
@@ -1339,6 +1424,8 @@
     const horario    = horarioTexto;
     const horarioDet = document.getElementById('f-horario-detalle').value.trim();
     const mensaje    = document.getElementById('f-mensaje').value.trim();
+    const promoTildada = document.querySelector('.promo-check:checked');
+    const promoElegida = promoTildada ? promoTildada.dataset.promo : null;
     const checks     = document.querySelectorAll('.servicios-checks input[type="checkbox"]:checked');
     const otroVal    = document.getElementById('input-otro').value.trim();
 
@@ -1358,7 +1445,7 @@
     }
 
     const listaServicios = servicios.map(s => `  • ${s}`).join('\n');
-    const texto = `¡Hola GLOWCAR! 👋\n\n*Nombre:* ${nombre}\n*Dirección:* ${direccion}${(fechaTexto || horario) ? '\n*Fecha/horario preferido:* ' + [fechaTexto, horario].filter(Boolean).join(' - ') : ''}${horarioDet ? '\n*Detalle de horario:* ' + horarioDet : ''}\n*Servicios:*\n${listaServicios}${medioPago ? '\n*Medio de pago:* ' + (medioPago === 'efectivo' ? '💵 Efectivo' : '📲 Transferencia') : ''}${mensaje ? '\n*Mensaje:* ' + mensaje : ''}\n\nQuiero reservar un turno 🙌`;
+    const texto = `¡Hola GLOWCAR! 👋\n\n*Nombre:* ${nombre}\n*Dirección:* ${direccion}${(fechaTexto || horario) ? '\n*Fecha/horario preferido:* ' + [fechaTexto, horario].filter(Boolean).join(' - ') : ''}${horarioDet ? '\n*Detalle de horario:* ' + horarioDet : ''}\n*Servicios:*\n${listaServicios}${promoElegida ? '\n*Promoción:* 🎉 Quiero aplicar ' + promoElegida : ''}${medioPago ? '\n*Medio de pago:* ' + (medioPago === 'efectivo' ? '💵 Efectivo' : '📲 Transferencia') : ''}${mensaje ? '\n*Mensaje:* ' + mensaje : ''}\n\nQuiero reservar un turno 🙌`;
     const url = `https://wa.me/${destNumero}?text=${encodeURIComponent(texto)}`;
     window.open(url, '_blank');
   }

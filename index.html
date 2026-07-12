@@ -1397,7 +1397,7 @@
   }
 
   function actualizarResumen() {
-    const checks   = document.querySelectorAll('.servicios-checks input[type="checkbox"]:checked');
+    const checks   = document.querySelectorAll('.servicios-checks input[type="checkbox"]:checked:not(.promo-check)');
     const resumen  = document.getElementById('resumen-servicios');
     const lista    = document.getElementById('lista-resumen');
     const otroVal  = document.getElementById('input-otro').value.trim();
@@ -1426,7 +1426,7 @@
     const mensaje    = document.getElementById('f-mensaje').value.trim();
     const promoTildada = document.querySelector('.promo-check:checked');
     const promoElegida = promoTildada ? promoTildada.dataset.promo : null;
-    const checks     = document.querySelectorAll('.servicios-checks input[type="checkbox"]:checked');
+    const checks     = document.querySelectorAll('.servicios-checks input[type="checkbox"]:checked:not(.promo-check)');
     const otroVal    = document.getElementById('input-otro').value.trim();
 
     const servicios = Array.from(checks).map(c => {

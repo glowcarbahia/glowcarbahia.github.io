@@ -114,6 +114,56 @@
       transition: background 0.35s ease, color 0.35s ease;
     }
 
+    /* ── TIP DEL DÍA (tarjeta arriba de Estética Vehicular) ── */
+    .tip-eyebrow {
+      display: block;
+      text-align: center;
+      font-family: 'Bebas Neue', sans-serif;
+      letter-spacing: 3px;
+      font-size: 1.1rem;
+      color: var(--orange);
+      background: rgba(255,107,0,0.10);
+      border: 1px solid rgba(255,107,0,0.3);
+      border-radius: 20px;
+      padding: 6px 20px;
+      width: fit-content;
+      margin: 0 auto 14px;
+    }
+    .tip-card-vehicular {
+      max-width: 640px;
+      margin: 0 auto 40px;
+      background: linear-gradient(135deg, rgba(255,107,0,0.10), rgba(255,60,0,0.06));
+      border: 1px solid rgba(255,107,0,0.28);
+      border-radius: var(--radius);
+      padding: 18px 24px;
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      text-align: left;
+    }
+    .tip-card-vehicular .tip-icon {
+      font-size: 1.5rem;
+      line-height: 1;
+      flex-shrink: 0;
+    }
+    .tip-card-vehicular .tip-label {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--orange);
+      font-size: 0.7rem;
+      margin-bottom: 4px;
+      display: block;
+      opacity: 0.9;
+    }
+    .tip-card-vehicular .tip-text {
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.92rem;
+      color: var(--text-soft);
+      line-height: 1.5;
+    }
+
     /* ── NAV ── */
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
@@ -970,6 +1020,7 @@
 <div class="orb orb-2"></div>
 <div class="orb orb-3"></div>
 
+
 <!-- NAV -->
 <nav>
   <a href="#" class="nav-logo" style="text-decoration:none;">GLOWCAR</a>
@@ -1074,6 +1125,16 @@
 
 <!-- STRIP -->
 <div class="domicilio-strip"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20" style="vertical-align:middle;margin-right:8px"><path d="M5 17H3a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h13l4 4v4a2 2 0 0 1-2 2h-1"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/><path d="M5 9h9l2 4H5V9z"/></svg>VAMOS A DOMICILIO<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20" style="vertical-align:middle;margin-left:8px"><path d="M5 17H3a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h13l4 4v4a2 2 0 0 1-2 2h-1"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/><path d="M5 9h9l2 4H5V9z"/></svg></div>
+
+<!-- TIP DEL DÍA -->
+<span class="tip-eyebrow fade-in">DATOS GLOWCAR DEL DÍA</span>
+<div class="tip-card-vehicular fade-in" id="tip-card-vehicular">
+  <span class="tip-icon" id="tip-icon">💡</span>
+  <div>
+    <span class="tip-label" id="tip-label">TIP</span>
+    <span class="tip-text" id="tip-text">Cargando...</span>
+  </div>
+</div>
 
 <!-- ESTÉTICA VEHICULAR -->
 <section id="vehicular">
@@ -1202,6 +1263,11 @@
       <span class="promo-tag">SEMANA DE LA MARCA</span>
       <span class="promo-text">25% <span class="promo-off">OFF</span> en <strong>TOYOTA</strong></span>
     </div>
+    <div class="promo-card">
+      <span class="promo-tag">COMBO GLOWCAR</span>
+      <span class="promo-text">Limpieza detallada de tu vehículo</span>
+      <span class="promo-text">+ <span class="promo-off">50%</span> OFF en limpieza profunda de tu sillón</span>
+    </div>
     <!-- ═══ PLANTILLA: para agregar una nueva promo, copiar el bloque de abajo, ═══
          descomentarlo y completar el tag y el texto.
     <div class="promo-card">
@@ -1281,6 +1347,10 @@
           <label class="check-item promo-check-item" style="background:rgba(255,107,0,0.07); border:1px solid rgba(255,107,0,0.25); border-radius:10px; padding:12px 14px;">
             <input type="checkbox" class="promo-check" data-promo="25% OFF Toyota" onchange="seleccionarUnaPromo(this)">
             🎉 Quiero aplicar la promo vigente: <strong>25% OFF Toyota</strong>
+          </label>
+          <label class="check-item promo-check-item" style="background:rgba(255,107,0,0.07); border:1px solid rgba(255,107,0,0.25); border-radius:10px; padding:12px 14px;">
+            <input type="checkbox" class="promo-check" data-promo="Combo: Limpieza detallada de vehículo + 50% OFF en limpieza profunda de sillón" onchange="seleccionarUnaPromo(this)">
+            🎉 Quiero aplicar la promo vigente: <strong>Combo Limpieza detallada + 50% OFF en sillón</strong>
           </label>
           <!-- ═══ PLANTILLA: para sumar otra promoción al formulario, ═══
                copiar el <label> de arriba, pegarlo aquí debajo, descomentarlo
@@ -1515,7 +1585,7 @@
              Línea ~1250 · Pegame el nuevo link y te lo proceso
              ===================================================== -->
         <iframe
-          src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Fphoto%2F%3Ffbid%3D122109030975380640&show_text=true&width=380"
+          src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Fphoto%2F%3Ffbid%3D122110135107380640&show_text=true&width=380"
           width="380" height="580" frameborder="0" scrolling="no"
           allowfullscreen="true"
           allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
@@ -1554,7 +1624,7 @@
                 Formato: https://www.instagram.com/p/CODIGO/embed/captioned/
              ===================================================== -->
         <iframe
-          src="https://www.instagram.com/p/DapcvY3iDfd/embed/captioned/"
+          src="https://www.instagram.com/p/DavZgEXGn_m/embed/captioned/"
           width="380" height="480" frameborder="0" scrolling="no"
           allowtransparency="true"
           style="border:none; overflow:hidden; max-width:100%;">
@@ -1615,6 +1685,61 @@
   <div class="f-logo">GLOWCAR</div>
   <p>Estética Vehicular & Limpieza para el Hogar · Bahía Blanca · Vamos a Domicilio</p>
 </footer>
+
+<script>
+  // ═══ TIPS GLOWCAR: se muestra uno distinto por día, de forma automática ═══
+  // Para sumar más tips en el futuro, agregá un objeto nuevo al array
+  // con el mismo formato: { cat: "categoría", title: "frase corta", desc: "detalle (opcional)" }
+  const tipsGlowcar = [
+    { cat: "Tip",             icon: "💡", title: "No limpies el tablero con silicona barata.", desc: "Deja una superficie grasosa que atrae más polvo y puede generar reflejos molestos al conducir." },
+    { cat: "Tip",             icon: "💡", title: "La microfibra importa.", desc: "Una buena microfibra limpia sin rayar. Una de mala calidad puede dejar marcas en plásticos brillantes." },
+    { cat: "Tip",             icon: "💡", title: "No uses el mismo paño para todo.", desc: "Uno para cristales, otro para plásticos y otro para tapizados." },
+    { cat: "¿Sabías que?",    icon: "❓", title: "El volante puede tener más bacterias que la pantalla de un celular si no se limpia periódicamente.", desc: "" },
+    { cat: "Error frecuente", icon: "⚠️", title: "Pulverizar el limpiador directamente sobre la pantalla multimedia.", desc: "Siempre aplicalo sobre el paño." },
+    { cat: "Tip profesional", icon: "⭐", title: "Limpiar de arriba hacia abajo evita ensuciar nuevamente las superficies ya limpias.", desc: "" },
+    { cat: "¿Sabías que?",    icon: "❓", title: "Los rayos UV deterioran el tablero incluso con el auto estacionado.", desc: "" },
+    { cat: "Error frecuente", icon: "⚠️", title: "Usar detergente de cocina para limpiar el interior.", desc: "" },
+    { cat: "Tip",             icon: "💡", title: "Aspirar primero facilita muchísimo la limpieza de plásticos y tapizados.", desc: "" },
+    { cat: "Tip",             icon: "💡", title: "Los pinceles de detailing llegan a las rejillas del aire acondicionado sin rayarlas.", desc: "" },
+    { cat: "¿Sabías que?",    icon: "❓", title: "Las rejillas del aire acondicionado acumulan polvo y microorganismos que luego respiramos.", desc: "" },
+    { cat: "Error frecuente", icon: "⚠️", title: "Usar demasiada agua en los tapizados.", desc: "" },
+    { cat: "Tip profesional", icon: "⭐", title: "La paciencia deja mejores resultados que frotar con fuerza.", desc: "" },
+    { cat: "¿Sabías que?",    icon: "❓", title: "Los productos con pH neutro prolongan la vida útil de los plásticos.", desc: "" },
+    { cat: "Tip",             icon: "💡", title: "Los botones del volante también necesitan limpieza frecuente.", desc: "" },
+    { cat: "Error frecuente", icon: "⚠️", title: "Usar cepillos demasiado duros.", desc: "" },
+    { cat: "Tip",             icon: "💡", title: "Los detalles hacen la diferencia: costuras, portavasos y manijas.", desc: "" },
+    { cat: "¿Sabías que?",    icon: "❓", title: "Un interior limpio ayuda a conservar mejor el valor del vehículo.", desc: "" },
+    { cat: "Tip",             icon: "💡", title: "No olvides limpiar los cinturones de seguridad.", desc: "" },
+    { cat: "Error frecuente", icon: "⚠️", title: "Aplicar acondicionador sobre el volante.", desc: "" },
+    { cat: "Tip profesional", icon: "⭐", title: "Trabajá siempre a la sombra.", desc: "" },
+    { cat: "¿Sabías que?",    icon: "❓", title: "El polvo contiene partículas abrasivas que desgastan los plásticos.", desc: "" },
+    { cat: "Tip",             icon: "💡", title: "Renová el paño cuando esté saturado de suciedad.", desc: "" },
+    { cat: "Error frecuente", icon: "⚠️", title: "Limpiar los cristales con papel de cocina.", desc: "" },
+    { cat: "Tip",             icon: "💡", title: "Terminá siempre con una inspección usando luz natural.", desc: "" },
+    { cat: "¿Sabías que?",    icon: "❓", title: "Los olores suelen quedar atrapados en las alfombras.", desc: "" },
+    { cat: "Tip profesional", icon: "⭐", title: "Menos producto suele dar mejores resultados.", desc: "" },
+    { cat: "Error frecuente", icon: "⚠️", title: "Olvidarse de limpiar los marcos de las puertas.", desc: "" },
+    { cat: "Tip",             icon: "💡", title: "Una limpieza semanal evita limpiezas profundas más costosas.", desc: "" },
+    { cat: "Dato Glowcar",    icon: "🚗", title: "Un auto limpio no solo se ve mejor.", desc: "También transmite mayor cuidado, comodidad y ayuda a conservar su valor de reventa." }
+  ];
+
+  function elegirTipDelDia() {
+    const hoy = new Date();
+    const inicioAno = new Date(hoy.getFullYear(), 0, 0);
+    const diaDelAno = Math.floor((hoy - inicioAno) / 86400000);
+    return tipsGlowcar[diaDelAno % tipsGlowcar.length];
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const tip = elegirTipDelDia();
+    const iconEl  = document.getElementById('tip-icon');
+    const labelEl = document.getElementById('tip-label');
+    const textEl  = document.getElementById('tip-text');
+    if (iconEl)  iconEl.textContent  = tip.icon;
+    if (labelEl) labelEl.textContent = tip.cat.toUpperCase();
+    if (textEl)  textEl.innerHTML    = `<strong>${tip.title}</strong>${tip.desc ? ' ' + tip.desc : ''}`;
+  });
+</script>
 
 
 </body>

@@ -164,6 +164,196 @@
       line-height: 1.5;
     }
 
+    /* ── RESEÑAS ── */
+    .resenas-resumen {
+      max-width: 320px;
+      margin: 0 auto 40px;
+      text-align: center;
+      background: linear-gradient(135deg, rgba(255,107,0,0.10), rgba(255,60,0,0.06));
+      border: 1px solid rgba(255,107,0,0.28);
+      border-radius: var(--radius);
+      padding: 24px;
+    }
+    .resenas-promedio {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2.6rem;
+      color: #fff;
+      display: block;
+      line-height: 1;
+    }
+    .resenas-estrellas-prom {
+      color: var(--orange);
+      font-size: 1.4rem;
+      letter-spacing: 3px;
+      margin: 6px 0;
+    }
+    .resenas-cantidad {
+      color: var(--muted);
+      font-size: 0.8rem;
+    }
+    .resenas-lista {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 18px;
+      max-width: 980px;
+      margin: 0 auto 40px;
+    }
+    .resena-card {
+      background: var(--card);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: var(--radius);
+      padding: 18px 20px;
+    }
+    .resena-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+      gap: 8px;
+    }
+    .resena-nombre {
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: #fff;
+    }
+    .resena-estrellas {
+      color: var(--orange);
+      font-size: 0.95rem;
+      letter-spacing: 1px;
+      flex-shrink: 0;
+    }
+    .resena-texto {
+      color: var(--text-soft);
+      font-size: 0.86rem;
+      line-height: 1.5;
+    }
+    .resena-vacio {
+      grid-column: 1 / -1;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.88rem;
+      padding: 20px;
+    }
+    .resena-borrar {
+      margin-top: 10px;
+      background: rgba(255,60,60,0.12);
+      border: 1px solid rgba(255,60,60,0.35);
+      color: #ff8a8a;
+      font-size: 0.75rem;
+      padding: 5px 12px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .resena-borrar:hover { background: rgba(255,60,60,0.22); }
+
+    .resenas-form-wrap {
+      max-width: 480px;
+      margin: 0 auto;
+      background: var(--card);
+      border: 1px solid rgba(255,107,0,0.2);
+      border-radius: var(--radius);
+      padding: 28px 26px;
+    }
+    .resenas-form-wrap h3 {
+      font-family: 'Bebas Neue', sans-serif;
+      letter-spacing: 1px;
+      font-size: 1.3rem;
+      color: #fff;
+      margin-bottom: 16px;
+      text-align: center;
+    }
+    #form-resena input[type="text"],
+    #form-resena textarea {
+      width: 100%;
+      background: var(--bg-input);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 8px;
+      color: #fff;
+      padding: 12px 14px;
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.88rem;
+      margin-bottom: 14px;
+      resize: vertical;
+    }
+    #form-resena textarea { min-height: 90px; }
+    .estrellas-input {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      font-size: 1.8rem;
+      margin-bottom: 16px;
+      color: rgba(255,255,255,0.2);
+    }
+    .estrellas-input span { cursor: pointer; transition: color 0.15s, transform 0.1s; }
+    .estrellas-input span:hover { transform: scale(1.15); }
+    .estrellas-input span.activa { color: var(--orange); }
+    .resena-error {
+      font-size: 0.8rem;
+      color: #ff8a8a;
+      text-align: center;
+      min-height: 18px;
+      margin-bottom: 10px;
+    }
+    #form-resena button {
+      width: 100%;
+      background: var(--orange);
+      color: var(--ink);
+      border: none;
+      border-radius: 999px;
+      padding: 13px;
+      font-weight: 700;
+      font-size: 0.85rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.15s;
+    }
+    #form-resena button:hover { background: var(--orange-hot); transform: translateY(-1px); }
+
+    .admin-resenas {
+      max-width: 480px;
+      margin: 24px auto 0;
+      text-align: center;
+      display: none; /* Se muestra solo con el gesto secreto (5 toques al logo del pie de página) */
+    }
+    .admin-resenas.visible {
+      display: block;
+    }
+    .admin-resenas a#admin-toggle {
+      color: var(--muted);
+      font-size: 0.72rem;
+      text-decoration: underline;
+      cursor: pointer;
+    }
+    #admin-login-box {
+      display: none;
+      flex-direction: column;
+      gap: 8px;
+      margin-top: 12px;
+      max-width: 280px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    #admin-login-box input {
+      background: var(--bg-input);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 8px;
+      color: #fff;
+      padding: 10px 12px;
+      font-size: 0.82rem;
+    }
+    #admin-login-box button {
+      background: transparent;
+      border: 1px solid var(--orange);
+      color: var(--orange);
+      border-radius: 8px;
+      padding: 8px;
+      font-size: 0.8rem;
+      cursor: pointer;
+    }
+    #admin-error { font-size: 0.72rem; color: #ff8a8a; }
+
     /* ── NAV ── */
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
@@ -1029,6 +1219,7 @@
     <a href="#hogar">HOGAR</a>
     <a href="#promociones" class="nav-promo">PROMOS ACTIVAS</a>
     <a href="#domicilio">A DOMICILIO</a>
+    <a href="#resenas">RESEÑAS</a>
     <a href="#turno">PEDÍ TU TURNO</a>
     <a href="#publicaciones">ÚLTIMAS PUBLICACIONES</a>
     <a href="#redes">REDES</a>
@@ -1050,6 +1241,7 @@
   <a href="#hogar" onclick="closeMenu()">HOGAR</a>
   <a href="#promociones" class="nav-promo" onclick="closeMenu()">PROMOS ACTIVAS</a>
   <a href="#domicilio" onclick="closeMenu()">A DOMICILIO</a>
+  <a href="#resenas" onclick="closeMenu()">RESEÑAS</a>
   <a href="#turno" onclick="closeMenu()">PEDÍ TU TURNO</a>
   <a href="#publicaciones" onclick="closeMenu()">ÚLTIMAS PUBLICACIONES</a>
   <a href="#redes" onclick="closeMenu()">REDES</a>
@@ -1637,6 +1829,48 @@
 
 </section>
 
+<!-- RESEÑAS -->
+<section id="resenas">
+  <h2 class="section-title fade-in">Lo que dicen <span>nuestros clientes</span></h2>
+  <div class="section-divider"></div>
+
+  <div class="resenas-resumen fade-in">
+    <span class="resenas-promedio" id="resenas-promedio">–</span>
+    <div class="resenas-estrellas-prom" id="resenas-estrellas-prom">☆☆☆☆☆</div>
+    <span class="resenas-cantidad" id="resenas-cantidad">Cargando reseñas...</span>
+  </div>
+
+  <div class="resenas-lista fade-in" id="resenas-lista"></div>
+
+  <div class="resenas-form-wrap fade-in">
+    <h3>Dejanos tu reseña</h3>
+    <form id="form-resena" onsubmit="return false;">
+      <input type="text" id="r-nombre" placeholder="Tu nombre" maxlength="60">
+      <div class="estrellas-input" id="estrellas-input">
+        <span data-val="1">★</span>
+        <span data-val="2">★</span>
+        <span data-val="3">★</span>
+        <span data-val="4">★</span>
+        <span data-val="5">★</span>
+      </div>
+      <textarea id="r-comentario" placeholder="Contanos tu experiencia..." maxlength="500"></textarea>
+      <p class="resena-error" id="resena-error"></p>
+      <button type="button" onclick="enviarResena()">Publicar reseña</button>
+    </form>
+  </div>
+
+  <!-- Acceso solo para GLOWCAR: no se muestra a los clientes de forma destacada -->
+  <div class="admin-resenas">
+    <a href="#" id="admin-toggle">Acceso administrador</a>
+    <div id="admin-login-box">
+      <input type="email" id="admin-email" placeholder="Email">
+      <input type="password" id="admin-pass" placeholder="Contraseña">
+      <button type="button" id="admin-login-btn">Ingresar</button>
+      <span id="admin-error"></span>
+    </div>
+  </div>
+</section>
+
 <!-- REDES -->
 <section id="redes">
   <h2 class="section-title fade-in">Encontranos en <span>Redes</span></h2>
@@ -1682,7 +1916,7 @@
 
 <!-- FOOTER -->
 <footer>
-  <div class="f-logo">GLOWCAR</div>
+  <div class="f-logo" id="f-logo">GLOWCAR</div>
   <p>Estética Vehicular & Limpieza para el Hogar · Bahía Blanca · Vamos a Domicilio</p>
 </footer>
 
@@ -1741,6 +1975,248 @@
   });
 </script>
 
+
+<!-- ═══════════════════════════════════════════════════════════════
+     SISTEMA DE RESEÑAS (Firebase)
+     Antes de que esto funcione, hay que crear un proyecto gratis en
+     Firebase y pegar la configuración acá abajo. Los pasos están
+     explicados aparte. Mientras no se complete, esta sección de la
+     página no va a cargar reseñas (no rompe nada del resto del sitio).
+     ═══════════════════════════════════════════════════════════════ -->
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+  import {
+    getFirestore, collection, addDoc, deleteDoc, doc,
+    query, orderBy, serverTimestamp, onSnapshot
+  } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+  import {
+    getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut
+  } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+  // ═══════════════════════════════════════════════════════════════
+  // 👇 PEGÁ ACÁ TU CONFIGURACIÓN DE FIREBASE
+  // (Firebase Console > ⚙️ Configuración del proyecto > Tus apps > SDK setup and configuration)
+  const firebaseConfig = {
+    apiKey: "AIzaSyAPRnMNpwAYeJ9EDO5cGgZSP_-Dk2cWnys",
+    authDomain: "glowcar-ea9bc.firebaseapp.com",
+    projectId: "glowcar-ea9bc",
+    storageBucket: "glowcar-ea9bc.firebasestorage.app",
+    messagingSenderId: "77589166222",
+    appId: "1:77589166222:web:5c454418d388af80c771df"
+  };
+  // ═══════════════════════════════════════════════════════════════
+
+  let app, db, auth;
+  const configListo = !Object.values(firebaseConfig).some(v => v === "PEGAR_ACA");
+
+  if (configListo) {
+    app  = initializeApp(firebaseConfig);
+    db   = getFirestore(app);
+    auth = getAuth(app);
+  } else {
+    console.warn("GLOWCAR: falta pegar la configuración de Firebase para activar las reseñas.");
+    const cantidadEl = document.getElementById('resenas-cantidad');
+    if (cantidadEl) cantidadEl.textContent = 'Las reseñas se activan en breve.';
+  }
+
+  let estrellaSeleccionada = 0;
+  let esAdmin = false;
+
+  // Lista de palabras que bloquean la publicación (se puede ampliar)
+  const palabrasProhibidas = [
+    "boludo","boluda","pelotudo","pelotuda","forro","forra","idiota","estupido","estúpido",
+    "imbecil","imbécil","hijo de puta","hdp","conchudo","puto","puta","mierda","cagada",
+    "carajo","gil","tarado","tarada","inutil","inútil","basura","asqueroso","asquerosa",
+    "estafa","estafador","estafadora","choro","chorro","ladron","ladrón","garcha","trolo",
+    "negro de mierda","reverenda","cornudo"
+  ];
+
+  function contieneInsultos(texto) {
+    const limpio = texto.toLowerCase();
+    return palabrasProhibidas.some(p => limpio.includes(p));
+  }
+
+  function escaparHTML(texto) {
+    const div = document.createElement('div');
+    div.textContent = texto;
+    return div.innerHTML;
+  }
+
+  function estrellasTexto(n) {
+    return '★'.repeat(n) + '☆'.repeat(5 - n);
+  }
+
+  // ── Estrellas del formulario ──
+  const estrellasInputEls = document.querySelectorAll('#estrellas-input span');
+  estrellasInputEls.forEach(estrella => {
+    estrella.addEventListener('click', () => {
+      estrellaSeleccionada = parseInt(estrella.dataset.val);
+      pintarEstrellasInput();
+    });
+  });
+  function pintarEstrellasInput() {
+    estrellasInputEls.forEach(estrella => {
+      estrella.classList.toggle('activa', parseInt(estrella.dataset.val) <= estrellaSeleccionada);
+    });
+  }
+
+  // ── Cargar y mostrar reseñas en tiempo real ──
+  let ultimoSnapshotResenas = null;
+
+  function renderizarResenas(snapshot) {
+    const lista = document.getElementById('resenas-lista');
+    lista.innerHTML = '';
+    let suma = 0;
+    let total = 0;
+
+    snapshot.forEach(docSnap => {
+      const r = docSnap.data();
+      total++;
+      suma += r.estrellas;
+
+      const card = document.createElement('div');
+      card.className = 'resena-card';
+      card.innerHTML = `
+        <div class="resena-top">
+          <span class="resena-nombre">${escaparHTML(r.nombre)}</span>
+          <span class="resena-estrellas">${estrellasTexto(r.estrellas)}</span>
+        </div>
+        <p class="resena-texto">${escaparHTML(r.comentario)}</p>
+        ${esAdmin ? `<button class="resena-borrar" data-id="${docSnap.id}">🗑 Borrar</button>` : ''}
+      `;
+      lista.appendChild(card);
+    });
+
+    if (total === 0) {
+      lista.innerHTML = '<div class="resena-vacio">Todavía no hay reseñas. ¡Sé el primero en dejar la tuya!</div>';
+    }
+
+    if (esAdmin) {
+      document.querySelectorAll('.resena-borrar').forEach(btn => {
+        btn.addEventListener('click', async () => {
+          if (confirm('¿Borrar esta reseña? No se puede deshacer.')) {
+            try {
+              await deleteDoc(doc(db, 'resenas', btn.dataset.id));
+            } catch (e) {
+              alert('No se pudo borrar. Probá volver a iniciar sesión como administrador.');
+            }
+          }
+        });
+      });
+    }
+
+    const promedioEl = document.getElementById('resenas-promedio');
+    const cantidadEl = document.getElementById('resenas-cantidad');
+    const estProm    = document.getElementById('resenas-estrellas-prom');
+    if (total === 0) {
+      promedioEl.textContent = '–';
+      estProm.textContent = '☆☆☆☆☆';
+      cantidadEl.textContent = 'Sé el primero en dejar tu reseña';
+    } else {
+      const promedio = suma / total;
+      promedioEl.textContent = promedio.toFixed(1);
+      estProm.textContent = estrellasTexto(Math.round(promedio));
+      cantidadEl.textContent = `Basado en ${total} reseña${total === 1 ? '' : 's'}`;
+    }
+  }
+
+  function iniciarListadoResenas() {
+    const resenasRef = collection(db, 'resenas');
+    const q = query(resenasRef, orderBy('fecha', 'desc'));
+
+    onSnapshot(q, (snapshot) => {
+      ultimoSnapshotResenas = snapshot;
+      renderizarResenas(snapshot);
+    });
+  }
+
+  // ── Enviar reseña ──
+  window.enviarResena = async function () {
+    if (!configListo) return;
+    const nombre      = document.getElementById('r-nombre').value.trim();
+    const comentario  = document.getElementById('r-comentario').value.trim();
+    const errorEl     = document.getElementById('resena-error');
+    errorEl.style.color = '#ff8a8a';
+    errorEl.textContent = '';
+
+    if (!nombre)               { errorEl.textContent = 'Ingresá tu nombre.'; return; }
+    if (!estrellaSeleccionada) { errorEl.textContent = 'Elegí una cantidad de estrellas.'; return; }
+    if (!comentario)           { errorEl.textContent = 'Escribí tu comentario.'; return; }
+    if (contieneInsultos(nombre) || contieneInsultos(comentario)) {
+      errorEl.textContent = 'Tu mensaje contiene palabras que no podemos publicar. Reformulalo, por favor.';
+      return;
+    }
+
+    try {
+      const resenasRef = collection(db, 'resenas');
+      await addDoc(resenasRef, {
+        nombre: nombre,
+        estrellas: estrellaSeleccionada,
+        comentario: comentario,
+        fecha: serverTimestamp()
+      });
+      document.getElementById('r-nombre').value = '';
+      document.getElementById('r-comentario').value = '';
+      estrellaSeleccionada = 0;
+      pintarEstrellasInput();
+      errorEl.style.color = '#8aff9e';
+      errorEl.textContent = '¡Gracias por tu reseña!';
+    } catch (e) {
+      errorEl.textContent = 'Hubo un error al enviar. Probá de nuevo en un momento.';
+    }
+  };
+
+  // ── Acceso administrador ──
+  const adminToggle   = document.getElementById('admin-toggle');
+  const adminLoginBox = document.getElementById('admin-login-box');
+  const adminResenasBox = document.querySelector('.admin-resenas');
+
+  // Acceso oculto: el botón de admin solo aparece si en la URL está
+  // el parámetro secreto correcto, ej: https://glowcar.com.ar/?admin=glowcar-2026
+  // 👇 Cambiá esta palabra por la que quieras usar como "llave secreta"
+  const CLAVE_SECRETA_ADMIN = "Leonpalombo912";
+  const parametrosURL = new URLSearchParams(window.location.search);
+  if (parametrosURL.get('admin') === CLAVE_SECRETA_ADMIN) {
+    adminResenasBox.classList.add('visible');
+  }
+
+  adminToggle.addEventListener('click', (e) => {
+    e.preventDefault();
+    if (esAdmin) return;
+    adminLoginBox.style.display = adminLoginBox.style.display === 'flex' ? 'none' : 'flex';
+  });
+
+  document.getElementById('admin-login-btn').addEventListener('click', async () => {
+    if (!configListo) return;
+    const email    = document.getElementById('admin-email').value.trim();
+    const pass     = document.getElementById('admin-pass').value;
+    const errorEl  = document.getElementById('admin-error');
+    errorEl.textContent = '';
+    try {
+      await signInWithEmailAndPassword(auth, email, pass);
+    } catch (e) {
+      errorEl.textContent = 'Datos incorrectos.';
+    }
+  });
+
+  if (configListo) {
+    onAuthStateChanged(auth, (user) => {
+      esAdmin = !!user;
+      if (esAdmin) {
+        adminToggle.textContent = 'Sesión de administrador activa (tocá para salir)';
+        adminToggle.onclick = async (e) => { e.preventDefault(); await signOut(auth); };
+        adminLoginBox.style.display = 'none';
+        adminResenasBox.classList.add('visible');
+      } else {
+        adminToggle.textContent = 'Acceso administrador';
+        adminToggle.onclick = null;
+      }
+      // Volvemos a dibujar la lista para que aparezca/desaparezca el botón de borrar
+      if (ultimoSnapshotResenas) renderizarResenas(ultimoSnapshotResenas);
+    });
+    iniciarListadoResenas();
+  }
+</script>
 
 </body>
 </html>
